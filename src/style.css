@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* src/assets/fonts.css */
+@font-face {
+  font-family: 'MadeFutureX';
+  src: url('./fonts/MADE Future X HEADER Bold PERSONAL.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+body {
+  font-family: 'Urbanist', sans-serif;
+}
