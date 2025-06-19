@@ -1,17 +1,24 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+
+// swiper
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
 
+// images data
+import { gallery } from '../scripts/galleryData'
+import { students } from '../scripts/studentData'
+
+// states
+const studentList = ref(students)
 const showContent = ref(false)
 const loading = ref(true)
 const showIntro = ref(false)
 const introRef = ref(null)
-
-// track hovered student index
 const studentHover = ref(null)
 
+// scroll to top
 const scrollToTop = () => {
   document.documentElement.scrollTop = 0
   document.body.scrollTop = 0
@@ -21,66 +28,7 @@ const scrollToTop = () => {
   })
 }
 
-// gallery pics
-import g1 from '../assets/img/gallery/ojt-1.jpg'
-import g2 from '../assets/img/gallery/ojt-2.jpg'
-import g3 from '../assets/img/gallery/ojt-3.jpg'
-import g4 from '../assets/img/gallery/ojt-4.jpg'
-import g5 from '../assets/img/gallery/ojt-5.jpg'
-import g6 from '../assets/img/gallery/ojt-6.jpg'
-import g7 from '../assets/img/gallery/ojt-7.jpg'
-import g8 from '../assets/img/gallery/ojt-8.jpg'
-
-const gallery = ref([
-  { img: g1 }, { img: g2 }, { img: g3 }, { img: g4 },
-  { img: g5 }, { img: g6 }, { img: g7 }, { img: g8 },
-])
-
-// grad pics
-import mondray1 from '../assets/img/MONDRAY_01.jpg'
-import mondray2 from '../assets/img/MONDRAY_02.jpg'
-import carlo1 from '../assets/img/CARLO_01.jpg'
-import carlo2 from '../assets/img/CARLO_02.jpg'
-import daniel1 from '../assets/img/DANIEL_01.JPG'
-import daniel2 from '../assets/img/DANIEL_02.JPG'
-import francis1 from '../assets/img/FRANCIS_03.jpg'
-import francis2 from '../assets/img/FRANCIS_02.jpg'
-import justine1 from '../assets/img/JUSTINE_01.jpg'
-import justine2 from '../assets/img/JUSTINE_02.jpg'
-
-const students = ref([
-  { name: 'Mondray Acio', 
-    desc: '@dayday.cio', 
-    img: mondray1, 
-    imgHover: mondray2,
-    link: 'https://instagram.com/dayday.cio' 
-  },
-  { name: 'Carlo Pangilinan', 
-    desc: '@_clysk', 
-    img: carlo1, 
-    imgHover: carlo2,
-    link: 'https://instagram.com/_clysk' 
-  },
-  { name: 'Daniel Carlos Chua', 
-    desc: '@damn.niel_', 
-    img: daniel1, 
-    imgHover: daniel2,
-    link: 'https://instagram.com/damn.niel_'  
-  },
-  { name: 'Francis Loyd Vino', 
-    desc: '@flvinonovi', 
-    img: francis1, 
-    imgHover: francis2,
-    link: 'https://instagram.com/flvinonovi'  
-  },
-  { name: 'Justine David Mesa', 
-    desc: '@justinedavid_13', 
-    img: justine1, 
-    imgHover: justine2,
-    link: 'https://instagram.com/justinedavid_13'  
-  },
-])
-
+// on mount
 onMounted(() => {
   scrollToTop()
   setTimeout(scrollToTop, 50)
@@ -91,11 +39,12 @@ onMounted(() => {
   }, 100)
 
   // preload hover images
-  students.value.forEach((s) => {
+  studentList.value.forEach((s) => {
     const img = new Image()
     img.src = s.imgHover
   })
 
+  // reveal hero section when in view
   if (introRef.value) {
     const observer = new IntersectionObserver((entries, obs) => {
       if (entries[0].isIntersecting) {
@@ -107,6 +56,7 @@ onMounted(() => {
   }
 })
 </script>
+
 
 <template>
   <div class="min-h-screen bg-white antialiased">
@@ -148,7 +98,7 @@ onMounted(() => {
             <div class="w-8 sm:w-10 lg:w-12 h-px bg-black"></div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-tight">Gallery</h2>
           </div>
-          <p class="text-sm sm:text-base text-gray-600 font-light ml-12 sm:ml-16 lg:ml-20 pr-4">
+          <p class="text-sm sm:text-base text-gray-600 font-light ml-12 sm:ml-16 lg:ml-20 pr-4 mb-4 sm:mb-6 lg:mb-8">
             Moments that shaped our journey
           </p>
         </div>
@@ -177,6 +127,29 @@ onMounted(() => {
             </div>
           </SwiperSlide>
         </Swiper>
+        <div class="mt-8 sm:mt-12 flex justify-center sm:justify-end px-2">
+          <router-link
+            to="/gallery"
+            class="relative inline-flex items-center gap-1.5 text-sm sm:text-base font-medium text-black group"
+          >
+            View More
+            <!-- Underline -->
+            <span
+              class="absolute left-0 -bottom-1 h-[1.5px] w-0 bg-black transition-all duration-300 group-hover:w-full"
+            ></span>
+            <!-- Arrow Icon -->
+            <svg
+              class="w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 19l14-14M5 5h14v14" />
+            </svg>
+          </router-link>
+        </div>
+
       </div>
     </section>
 
