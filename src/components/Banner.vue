@@ -204,28 +204,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-/* Modern animations */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes pulse-scale {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0.7; }
-}
-
-@keyframes bounce-modern {
-  0%, 80%, 100% { 
-    transform: translateY(0) scale(1); 
-    opacity: 0.7;
-  }
-  40% { 
-    transform: translateY(-8px) scale(1.1); 
-    opacity: 1;
-  }
-}
-
 @keyframes float {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
   33% { transform: translate(10px, -10px) rotate(120deg); }
@@ -236,31 +214,6 @@ onBeforeUnmount(() => {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
   33% { transform: translate(-15px, 10px) rotate(-120deg); }
   66% { transform: translate(10px, -5px) rotate(-240deg); }
-}
-
-@keyframes float-particle-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-  50% { transform: translate(8px, -12px) scale(1.2); opacity: 1; }
-}
-
-@keyframes float-particle-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-  50% { transform: translate(-6px, -8px) scale(1.2); opacity: 1; }
-}
-
-@keyframes float-particle-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-  50% { transform: translate(10px, 6px) scale(1.2); opacity: 1; }
-}
-
-@keyframes float-particle-4 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-  50% { transform: translate(-8px, 10px) scale(1.2); opacity: 1; }
-}
-
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
 }
 
 @keyframes fade-in-up {
@@ -279,34 +232,20 @@ onBeforeUnmount(() => {
 }
 
 /* Animation classes */
-.animate-spin-slow { animation: spin-slow 3s linear infinite; }
-.animate-pulse-scale { animation: pulse-scale 2s ease-in-out infinite; }
-.animate-bounce-modern { animation: bounce-modern 1.4s ease-in-out infinite; }
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-float-delayed { animation: float-delayed 8s ease-in-out infinite; }
-.animate-float-particle-1 { animation: float-particle-1 3s ease-in-out infinite; }
-.animate-float-particle-2 { animation: float-particle-2 3.5s ease-in-out infinite 0.5s; }
-.animate-float-particle-3 { animation: float-particle-3 4s ease-in-out infinite 1s; }
-.animate-float-particle-4 { animation: float-particle-4 3.2s ease-in-out infinite 1.5s; }
-.animate-gradient-shift { 
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease-in-out infinite;
-}
 .animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
 .animate-scroll-wheel { animation: scroll-wheel 2s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 
 /* Delay utilities */
-.delay-0 { animation-delay: 0ms; }
-.delay-150 { animation-delay: 150ms; }
-.delay-300 { animation-delay: 300ms; }
 .delay-500 { animation-delay: 500ms; }
 
 /* Swiper customization */
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-swiper {
     touch-action: pan-y pinch-zoom;
   }
 }
+
 </style>
