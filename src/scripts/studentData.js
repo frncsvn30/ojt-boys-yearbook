@@ -9,6 +9,8 @@ import francis1 from '../assets/img/gradpics/FRANCIS_03.jpg'
 import francis2 from '../assets/img/gradpics/FRANCIS_02.jpg'
 import justine1 from '../assets/img/gradpics/JUSTINE_01.jpg'
 import justine2 from '../assets/img/gradpics/JUSTINE_02.jpg'
+import cerafine1 from '../assets/img/gradpics/CERAFINE_01.jpg'
+import cerafine2 from '../assets/img/gradpics/CERAFINE_02.jpg'
 
 export const students = [
   {
@@ -45,5 +47,12 @@ export const students = [
     img: justine1,
     imgHover: justine2,
     link: 'https://instagram.com/justinedavid_13',
+  },
+  {
+    name: 'Cerafine Medina',
+    desc: '@serappppph',
+    img: cerafine1,
+    imgHover: cerafine2,
+    link: 'https://instagram.com/serappppph',
   },
 ]
