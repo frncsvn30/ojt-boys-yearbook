@@ -5,7 +5,7 @@ import { Autoplay, EffectFade } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 
-// Image imports
+// img imports
 import img1 from '../assets/img/tupad-1.jpg'
 import img2 from '../assets/img/tupad-2.jpg'
 import img3 from '../assets/img/tupad-3.jpg'
@@ -13,7 +13,7 @@ import img4 from '../assets/img/tupad-4.jpg'
 import img5 from '../assets/img/tupad-5.jpg'
 import img6 from '../assets/img/tupad-6.jpg'
 
-// Reactive state
+// reactive state
 const images = [img1, img2, img3, img4, img5, img6]
 const loading = ref(true)
 const fadeOut = ref(false)
@@ -22,10 +22,10 @@ const scrollY = ref(0)
 const swiperRef = ref(null)
 const windowHeight = ref(0)
 
-// Computed properties
+// computed properties
 const dynamicHeight = computed(() => {
-  const minHeight = 60 // Minimum height in vh
-  const maxHeight = 100 // Maximum height in vh
+  const minHeight = 60 // min height in vh
+  const maxHeight = 100 // max height in vh
   const scrollFactor = Math.min(scrollY.value / windowHeight.value, 0.4)
   const currentHeight = maxHeight - (scrollFactor * (maxHeight - minHeight))
   return `${Math.max(currentHeight, minHeight)}vh`
@@ -39,11 +39,11 @@ const scrollIndicatorOpacity = computed(() => {
   return 1 - (scrollY.value - fadeStart) / (fadeEnd - fadeStart)
 })
 
-// Event handlers
+// event handlers
 const handleScroll = () => {
   scrollY.value = window.scrollY
   
-  // Control autoplay based on scroll position
+  // control autoplay based on scroll position
   if (swiperRef.value?.swiper) {
     if (scrollY.value > windowHeight.value * 0.3) {
       swiperRef.value.swiper.autoplay.stop()
@@ -57,22 +57,22 @@ const handleResize = () => {
   windowHeight.value = window.innerHeight
 }
 
-// Lifecycle
+// lifecycle
 onMounted(async () => {
-  // Initialize window dimensions
+  // initialize window dimensions
   windowHeight.value = window.innerHeight
   
-  // Disable scrolling during loading
+  // disable scrolling during loading
   document.body.style.overflow = 'hidden'
   
-  // Add event listeners
+  // add event listeners
   window.addEventListener('scroll', handleScroll, { passive: true })
   window.addEventListener('resize', handleResize, { passive: true })
   
-  // Show content immediately but hidden
+  // show content immediately but hidden
   showContent.value = true
   
-  // Loading sequence
+  // loading sequence
   setTimeout(() => {
     fadeOut.value = true
     
@@ -80,13 +80,13 @@ onMounted(async () => {
       loading.value = false
       document.body.style.overflow = 'auto'
       
-      // Ensure swiper is properly initialized
+      // ensure swiper is properly initialized
       await nextTick()
       if (swiperRef.value?.swiper) {
         swiperRef.value.swiper.update()
       }
     }, 1000)
-  }, 2500) // Reduced loading time for better UX
+  }, 2500) // reduced loading time for better UX
 })
 
 onBeforeUnmount(() => {
@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <!-- Modern Loading Screen -->
+  <!-- modern Loading Screen -->
   <div
     v-if="loading"
     :class="[ 
@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
       fadeOut ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
     ]"
   >
-    <!-- Animated background pattern -->
+    <!-- animated background pattern -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-100/30 to-purple-100/30 rounded-full blur-3xl animate-float"></div>
       <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-amber-100/30 to-pink-100/30 rounded-full blur-3xl animate-float-delayed"></div>
@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
 
     <div class="text-center space-y-8 relative z-10">
   
-      <!-- Loading text -->
+      <!-- loading text -->
       <div class="space-y-3">
         <div class="flex justify-center items-center">
           <img 
@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
           />
         </div>
 
-        <!-- Subtitle -->
+        <!-- subtitle -->
         <p class="text-sm md:text-md text-slate-600 animate-fade-in-up delay-500">
           Documenting moments...
         </p>
@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
     </div>
   </div>
 
-  <!-- Hero Carousel Section -->
+  <!-- hero Carousel Section -->
   <section
     v-show="showContent"
     :class="[
@@ -141,10 +141,10 @@ onBeforeUnmount(() => {
     ]"
     :style="{ height: dynamicHeight }"
   >
-    <!-- Gradient Overlay for better text visibility -->
+    <!-- gradient Overlay for better text visibility -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 pointer-events-none"></div>
     
-    <!-- Swiper Carousel -->
+    <!-- swiper Carousel -->
     <Swiper
       ref="swiperRef"
       :modules="[Autoplay, EffectFade]"
@@ -182,23 +182,38 @@ onBeforeUnmount(() => {
       </SwiperSlide>
     </Swiper>
     
-    <!-- Scroll Down Indicator -->
-    <div 
-      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center transition-opacity duration-500"
-      :style="{ opacity: scrollIndicatorOpacity }"
-    >
-      <div class="text-white text-sm font-medium mb-3 opacity-90 animate-pulse">
-        Scroll to explore
-      </div>
-      <div class="relative">
-        <!-- Mouse outline -->
-        <div class="w-6 h-10 border-2 border-white/80 rounded-full flex justify-center backdrop-blur-sm bg-white/10">
-          <div class="w-1 h-3 bg-white rounded-full mt-2 animate-scroll-wheel"></div>
-        </div>
-        <!-- Subtle glow effect -->
-        <div class="absolute inset-0 w-6 h-10 border border-white/30 rounded-full animate-pulse-glow"></div>
-      </div>
+    <!-- scroll down indicator -->
+
+<!-- Desktop version: full scroll indicator -->
+<div 
+  class="hidden sm:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex-col items-center transition-opacity duration-500"
+  :style="{ opacity: scrollIndicatorOpacity }"
+>
+  <div class="text-white text-sm font-medium mb-3 opacity-90 animate-pulse">
+    Scroll to explore
+  </div>
+  <div class="relative">
+    <div class="w-6 h-10 border-2 border-white/80 rounded-full flex justify-center backdrop-blur-sm bg-white/10">
+      <div class="w-1 h-3 bg-white rounded-full mt-2 animate-scroll-wheel"></div>
     </div>
+    <div class="absolute inset-0 w-6 h-10 border border-white/30 rounded-full animate-pulse-glow"></div>
+  </div>
+</div>
+
+<!-- Mobile version: swipe up gesture icon -->
+<div 
+  class="sm:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center transition-opacity duration-500"
+  :style="{ opacity: scrollIndicatorOpacity }"
+>
+  <!-- Stylized swipe up SVG icon -->
+  <svg class="w-8 h-8 text-white animate-bounce" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 22c-.55 0-1-.45-1-1V9.41l-2.29 2.3a.996.996 0 11-1.41-1.41l4-4c.39-.39 1.02-.39 1.41 0l4 4a.996.996 0 11-1.41 1.41L13 9.41V21c0 .55-.45 1-1 1z"/>
+  </svg>
+  <span class="text-xs text-white mt-1 animate-pulse">Swipe up</span>
+</div>
+
+
+
 
   </section>
 </template>

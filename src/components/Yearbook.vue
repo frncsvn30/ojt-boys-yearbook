@@ -96,7 +96,9 @@ onMounted(() => {
         <div class="mb-12 sm:mb-16 lg:mb-20">
           <div class="flex items-center gap-4 sm:gap-6 lg:gap-8 mb-4 sm:mb-6 lg:mb-8">
             <div class="w-8 sm:w-10 lg:w-12 h-px bg-black"></div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-tight">Gallery</h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-tight">
+              A Look Back
+            </h2>
           </div>
           <p class="text-sm sm:text-base text-gray-600 font-light ml-12 sm:ml-16 lg:ml-20 pr-4 mb-4 sm:mb-6 lg:mb-8">
             Moments that shaped our journey
@@ -132,7 +134,7 @@ onMounted(() => {
             to="/gallery"
             class="relative inline-flex items-center gap-1.5 text-sm sm:text-base font-medium text-black group"
           >
-            View More
+            View Gallery
             <!-- Underline -->
             <span
               class="absolute left-0 -bottom-1 h-[1.5px] w-0 bg-black transition-all duration-300 group-hover:w-full"
@@ -168,7 +170,7 @@ onMounted(() => {
             Years of learning, captured in moments
           </p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-12 lg:gap-16 xl:gap-20">
+        <div class="px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-12 lg:gap-16 xl:gap-20">
           <div
             v-for="(student, index) in students"
             :key="index"
