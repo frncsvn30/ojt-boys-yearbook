@@ -173,16 +173,14 @@ onMounted(() => {
           </p>
         </div>
         <div class="px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-12 lg:gap-16 xl:gap-20">
-          <div
-            v-for="(student, index) in students"
-            :key="index"
-            class="group"
-            @mouseenter="studentHover = index"
-            @mouseleave="studentHover = null"
-            @touchstart.prevent="studentHover = index"
-            @touchend.prevent="studentHover = null"
-          >
-            <div class="relative mb-4 sm:mb-6 lg:mb-8 overflow-hidden bg-gray-100 aspect-[3/4]">
+          <div v-for="(student, index) in students" :key="index">
+            <div
+              class="relative mb-4 sm:mb-6 lg:mb-8 overflow-hidden bg-gray-100 aspect-[3/4] group"
+              @mouseenter="studentHover = index"
+              @mouseleave="studentHover = null"
+              @touchstart.prevent="studentHover = index"
+              @touchend.prevent="studentHover = null"
+            >
               <img
                 :src="studentHover === index ? student.imgHover : student.img"
                 class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.02] grayscale-[0.1] group-hover:grayscale-0"
@@ -192,8 +190,6 @@ onMounted(() => {
             </div>
             <div class="space-y-2 sm:space-y-3 text-center sm:text-left">
               <h3 class="text-base sm:text-lg font-light text-black tracking-tight">{{ student.name }}</h3>
-              <!-- <p class="text-xs sm:text-sm text-gray-500 font-light tracking-wide">{{ student.desc }}</p> -->
-
               <a
                 :href="student.link"
                 target="_blank"
