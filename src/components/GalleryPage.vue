@@ -111,11 +111,11 @@ onUnmounted(() => {
   <div class="w-full mx-auto min-h-screen flex flex-col items-center justify-center py-16 sm:py-24 bg-white text-black">
 
     <div class="text-center mb-16 sm:mb-20 lg:mb-24 space-y-4 sm:space-y-6">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extralight text-black tracking-wide">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-black tracking-wide">
         Gallery
       </h1>
       <div class="w-px h-12 sm:h-16 bg-black mx-auto opacity-60"></div>
-      <p class="text-xs sm:text-sm text-gray-500 font-light tracking-wider uppercase">
+      <p class="text-xs sm:text-sm text-gray-500 font-light tracking-wider">
         A Look Back at Our Journey
       </p>
     </div>
@@ -134,10 +134,10 @@ onUnmounted(() => {
     <!-- pagination controls -->
     <div class="mt-12 sm:mt-16 flex justify-center items-center gap-px flex-wrap">
       <button v-for="page in totalPages" :key="page" @click="goToPage(page)" :class="[
-        'px-3 py-2 sm:px-5 sm:py-3 text-xs font-medium transition-colors duration-200 border-r border-gray-300 last:border-r-0 min-w-[2.5rem] sm:min-w-[3rem]',
+        'px-3 py-2 sm:px-5 sm:py-3 text-xs font-medium transition-colors duration-200 border-gray-300 min-w-[2.5rem] sm:min-w-[3rem] cursor-pointer',
         currentPage === page
           ? 'bg-black text-white'
-          : 'bg-white text-black hover:bg-gray-50'
+          : 'bg-white text-black hover:bg-gray-100'
       ]">
         {{ page.toString().padStart(2, '0') }}
       </button>

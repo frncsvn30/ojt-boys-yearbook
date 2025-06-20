@@ -118,9 +118,9 @@ onBeforeUnmount(() => {
       <div class="space-y-3">
         <div class="flex justify-center items-center">
           <img 
-            src="../assets/gifs/loader.gif" 
+            src="../assets/gifs/tanjiro-nezuko-and-zenitsu.gif" 
             alt="Loading..." 
-            class="w-10 h-10 md:w-12 md:h-12 object-contain"
+            class="w-14 h-14 md:w-16 md:h-16 object-contain mb-2.5"
           />
         </div>
 

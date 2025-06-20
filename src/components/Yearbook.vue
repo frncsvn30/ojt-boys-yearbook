@@ -169,7 +169,7 @@ onMounted(() => {
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-tight">Graduates of 2025</h2>
           </div>
           <p class="text-sm sm:text-base text-gray-600 font-light ml-12 sm:ml-16 lg:ml-20 pr-4">
-            Years of learning, captured in moments
+            All those years of learning, in one photo
           </p>
         </div>
         <div class="px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-12 lg:gap-16 xl:gap-20">
