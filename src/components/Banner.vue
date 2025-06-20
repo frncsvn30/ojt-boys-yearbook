@@ -6,12 +6,12 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 
 // img imports
-import img1 from '../assets/img/tupad-1.jpg'
-import img2 from '../assets/img/tupad-2.jpg'
-import img3 from '../assets/img/tupad-3.jpg'
-import img4 from '../assets/img/tupad-4.jpg'
-import img5 from '../assets/img/tupad-5.jpg'
-import img6 from '../assets/img/tupad-6.jpg'
+import img1 from '../assets/img/gallery/ojt-17.jpg'
+import img2 from '../assets/img/gallery/ojt-18.jpg'
+import img3 from '../assets/img/gallery/ojt-19.jpg'
+import img4 from '../assets/img/gallery/ojt-20.jpg'
+import img5 from '../assets/img/gallery/ojt-21.jpg'
+import img6 from '../assets/img/gallery/ojt-22.jpg'
 
 // reactive state
 const images = [img1, img2, img3, img4, img5, img6]

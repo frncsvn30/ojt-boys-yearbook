@@ -1,4 +1,6 @@
 <script setup>
+import Footer from './Footer.vue'
+
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 // import all images from gallery folder
@@ -192,6 +194,9 @@ onUnmounted(() => {
       </div>
     </div>
   </Transition>
+
+  <!-- footer -->
+   <Footer />
 </template>
 
 <style scoped>
