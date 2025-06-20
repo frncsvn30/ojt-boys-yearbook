@@ -1,14 +1,14 @@
 // Grad images
-import mondray1 from '../assets/img/MONDRAY_01.jpg'
-import mondray2 from '../assets/img/MONDRAY_02.jpg'
-import carlo1 from '../assets/img/CARLO_01.jpg'
-import carlo2 from '../assets/img/CARLO_02.jpg'
-import daniel1 from '../assets/img/DANIEL_01.JPG'
-import daniel2 from '../assets/img/DANIEL_02.JPG'
-import francis1 from '../assets/img/FRANCIS_03.jpg'
-import francis2 from '../assets/img/FRANCIS_02.jpg'
-import justine1 from '../assets/img/JUSTINE_01.jpg'
-import justine2 from '../assets/img/JUSTINE_02.jpg'
+import mondray1 from '../assets/img/gradpics/MONDRAY_01.jpg'
+import mondray2 from '../assets/img/gradpics/MONDRAY_02.jpg'
+import carlo1 from '../assets/img/gradpics/CARLO_01.jpg'
+import carlo2 from '../assets/img/gradpics/CARLO_02.jpg'
+import daniel1 from '../assets/img/gradpics/DANIEL_01.JPG'
+import daniel2 from '../assets/img/gradpics/DANIEL_02.JPG'
+import francis1 from '../assets/img/gradpics/FRANCIS_03.jpg'
+import francis2 from '../assets/img/gradpics/FRANCIS_02.jpg'
+import justine1 from '../assets/img/gradpics/JUSTINE_01.jpg'
+import justine2 from '../assets/img/gradpics/JUSTINE_02.jpg'
 
 export const students = [
   {
