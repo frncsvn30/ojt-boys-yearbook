@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 // import all images from gallery folder
 const imageModules = import.meta.glob('../assets/img/gallery/*.jpg', { eager: true, import: 'default' })
@@ -24,12 +24,69 @@ const paginatedImages = computed(() => {
   return sortedImages.slice(start, start + itemsPerPage)
 })
 
+// image viewer setup
+const isViewerOpen = ref(false)
+const currentImageIndex = ref(0)
+
 function goToPage(page) {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 }
+
+function openViewer(imageIndex) {
+  // calculate the absolute index in the full sortedImages array
+  const absoluteIndex = (currentPage.value - 1) * itemsPerPage + imageIndex
+  currentImageIndex.value = absoluteIndex
+  isViewerOpen.value = true
+  document.body.style.overflow = 'hidden' // prevent bg scrolling
+}
+
+function closeViewer() {
+  isViewerOpen.value = false
+  document.body.style.overflow = 'auto'
+}
+
+function nextImage() {
+  if (currentImageIndex.value < sortedImages.length - 1) {
+    currentImageIndex.value++
+  }
+}
+
+function prevImage() {
+  if (currentImageIndex.value > 0) {
+    currentImageIndex.value--
+  }
+}
+
+function handleKeydown(event) {
+  if (!isViewerOpen.value) return
+  
+  switch (event.key) {
+    case 'ArrowRight':
+      event.preventDefault()
+      nextImage()
+      break
+    case 'ArrowLeft':
+      event.preventDefault()
+      prevImage()
+      break
+    case 'Escape':
+      event.preventDefault()
+      closeViewer()
+      break
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeydown)
+  document.body.style.overflow = 'auto' // cleanup
+})
 </script>
 
 <template>
@@ -63,9 +120,11 @@ function goToPage(page) {
 
     <div class="px-4 sm:px-6 md:px-0">
       <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-px bg-gray-200 border border-gray-200">
-        <div v-for="(img, index) in paginatedImages" :key="index" class="aspect-square overflow-hidden bg-white">
+        <div v-for="(img, index) in paginatedImages" :key="index" 
+             class="aspect-square overflow-hidden bg-white cursor-pointer group"
+             @click="openViewer(index)">
           <img :src="img" alt="Gallery Image"
-            class="w-full h-full object-cover hover:opacity-90 transition-opacity duration-300" />
+            class="w-full h-full object-cover group-hover:opacity-90 group-hover:scale-105 transition-all duration-300" />
         </div>
       </div>
     </div>
@@ -82,7 +141,67 @@ function goToPage(page) {
       </button>
     </div>
   </div>
+
+  <!-- img viewer modal -->
+  <Transition name="viewer">
+    <div v-if="isViewerOpen" 
+         class="fixed inset-0 z-50 bg-black bg-opacity-95 flex items-center justify-center"
+         @click.self="closeViewer">
+      
+      <!-- close button -->
+      <button @click="closeViewer"
+              class="absolute top-4 right-4 z-60 text-white hover:text-gray-300 transition-colors duration-200">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- nav arrows -->
+      <button v-if="currentImageIndex > 0"
+              @click="prevImage"
+              class="absolute left-4 top-1/2 -translate-y-1/2 z-60 text-white hover:text-gray-300 transition-colors duration-200 p-2 rounded-full hover:bg-white/10">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button v-if="currentImageIndex < sortedImages.length - 1"
+              @click="nextImage"
+              class="absolute right-4 top-1/2 -translate-y-1/2 z-60 text-white hover:text-gray-300 transition-colors duration-200 p-2 rounded-full hover:bg-white/10">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- main img -->
+      <div class="flex items-center justify-center p-4">
+        <img :src="sortedImages[currentImageIndex]" 
+             alt="Gallery Image"
+             class="max-w-[90vw] max-h-[90vh] object-contain"
+             @click.stop>
+      </div>
+
+      <!-- img counter -->
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-3 py-1 rounded-full">
+        {{ currentImageIndex + 1 }} / {{ sortedImages.length }}
+      </div>
+
+      <!-- instructions -->
+      <div class="absolute bottom-4 right-4 text-white text-xs opacity-70">
+        Arrow keys • ESC to close
+      </div>
+    </div>
+  </Transition>
 </template>
 
 <style scoped>
+.viewer-enter-active,
+.viewer-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.viewer-enter-from,
+.viewer-leave-to {
+  opacity: 0;
+}
 </style>
