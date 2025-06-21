@@ -120,8 +120,8 @@ onUnmounted(() => {
       </p>
     </div>
 
-    <div class="px-4 sm:px-6 md:px-0">
-      <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-px bg-gray-200 border border-gray-200">
+    <div class="px-1 sm:px-1 md:px-0">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-px bg-gray-200 border border-gray-200">
         <div v-for="(img, index) in paginatedImages" :key="index" 
              class="aspect-square overflow-hidden bg-white cursor-pointer group"
              @click="openViewer(index)">
@@ -209,4 +209,28 @@ onUnmounted(() => {
 .viewer-leave-to {
   opacity: 0;
 }
+
+/* selection styling */
+::selection {
+  background-color: #000;
+  color: #fff;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
 </style>
