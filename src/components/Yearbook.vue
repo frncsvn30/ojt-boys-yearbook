@@ -119,7 +119,7 @@ onMounted(() => {
           :space-between="16"
           class="w-full"
         >
-          <SwiperSlide v-for="(item, index) in gallery" :key="index" class="md:!w-[70%] lg:!w-[55%] xl:!w-[40%] 2xl:!w-[32%]">
+          <SwiperSlide v-for="(item, index) in gallery" :key="index" class="md:!w-[70%] lg:!w-[55%] xl:!w-[32%] 2xl:!w-[32%]">
             <div class="group relative overflow-hidden bg-gray-100 aspect-[3/4]">
               <img
                 :src="item.img"
