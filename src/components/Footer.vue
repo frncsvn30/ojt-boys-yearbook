@@ -45,7 +45,7 @@
 
         <div class="text-center">
           <p class="text-sm text-gray-600">
-            Coded in <span class="text-gray-400">Visual Studio Code</span>. Built with <span class="text-gray-400">VueJS & Tailwind</span>. Deployed on <span class="text-gray-400">Vercel</span>
+            Coded in <span class="text-gray-400">Visual Studio Code</span>. Built with <span class="text-gray-400">VueJS & Tailwind CSS</span>. Deployed on <span class="text-gray-400">Vercel</span>
           </p>
         </div>
       </div>

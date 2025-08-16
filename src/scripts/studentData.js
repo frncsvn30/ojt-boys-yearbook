@@ -18,6 +18,9 @@ import pare1 from '../assets/img/gradpics/DREI_01.jpeg'
 import pare2 from '../assets/img/gradpics/DREI_02.jpeg'
 import alex1 from '../assets/img/gradpics/ALEX_01.jpg'
 import alex2 from '../assets/img/gradpics/ALEX_02.jpg'
+import regie1 from '../assets/img/gradpics/Regie_01.png'
+import misasa1 from '../assets/img/gradpics/Misasa_01.jpg'
+import ven1 from '../assets/img/gradpics/Parungao_01.png'
 
 export const students = [
   {
@@ -89,5 +92,26 @@ export const students = [
     img: jay1,
     imgHover: jay2,
     link: 'https://facebook.com/Jaymirasol040203',
+  },
+  {
+    name: 'Regie Canlas',
+    desc: '@congrige',
+    img: regie1,
+    imgHover: regie1,
+    link: 'https://www.facebook.com/congrige',
+  },
+  {
+    name: 'Mark John Paul Misasa',
+    desc: '@sadsafhew.2',
+    img: misasa1,
+    imgHover: misasa1,
+    link: 'https://www.facebook.com/sadsafhew.2',
+  },
+  {
+    name: 'Francis Ven Parungao',
+    desc: '@francisvenparungao.22',
+    img: ven1,
+    imgHover: ven1,
+    link: 'https://www.facebook.com/francisvenparungao.22',
   },
 ]
